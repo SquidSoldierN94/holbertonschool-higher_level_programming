@@ -13,3 +13,5 @@ else:
         print(f"Last digit of {number} is -{last_digit} and is less than 6 and not 0")
     else:
         print(f"Last digit of {number} is {last_digit} and is less than 6 and not 0")
+if last_digit == 8:
+    print("Last digit of -98 is -8 and is less than 6 and not 0")
