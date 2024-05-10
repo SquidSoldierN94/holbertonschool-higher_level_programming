@@ -4,4 +4,3 @@ for x in range(00, 99):
     print(f"{y}", end=', ')
 else:
     print("99")
-    
