@@ -2,4 +2,3 @@
 for x in range(0, 99):
     y = hex(x)
     print("{:d} = {:s}".format(x, hex(x)))
-    
