@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 def islower(c):
-    if ord('a') <= ord(c) <= ord('z'):
-        print(f"{c} is lower")
-    elif ord('A') <= ord(c) <= ord('Z'):
-        print(f"{c} is upper")
-    else:
-        print("{}")
+    for x in range(128):
+        if x == ord(c):
+            if 97 <= x < 123:  # Check if the character is lowercase
+                print(f"{c} => lower")
+            elif 65 <= x < 91:  # Check if the character is uppercase
+                print(f"{c} => upper")
+            break
