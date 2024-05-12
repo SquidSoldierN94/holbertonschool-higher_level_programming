@@ -1,13 +1,8 @@
 #!/usr/bin/python3
-import sys
+from sys import argv
 
-if __name__ == '__main__':
-    av = sys.argv
-    l_av = len(av)
-    sum = 0
+args = argv[1:]
 
-    if l_av > 1:
-        for i in range(1, l_av):
-            sum += int(av[i])
+result = sum(int(arg) for arg in args)
 
-    print(sum)
+print(result)
