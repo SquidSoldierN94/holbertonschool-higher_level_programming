@@ -1,13 +1,16 @@
 #!/usr/bin/python3
-from sys import argv
-
-num_args = len(argv) - 1
-if num_args == 0:
-    print("0 arguments.")
-elif num_args == 1:
-    print("1 argument:")
-    print(f"1: {argv[1]}")
-else:
-    print(f"{num_args} arguments:")
-    for i in range(1, num_args + 1):
-        print(f"{i}: {argv[i]}")
+if __name__ == "__main__":
+    """Prints the argument list passed to the program
+    The program takes all the arguments starting from the second
+    and prints the number of arguments and their value
+    """
+    import sys
+    num = len(sys.argv)
+    if num == 1:
+        print("{:d} arguments.".format(num - 1))
+    elif num == 2:
+        print("{:d} argument:".format(num - 1))
+    else:
+        print("{:d} arguments:".format(num - 1))
+    for i in range(1, num):
+        print("{:d}: {:s}".format(i, sys.argv[i]))
