@@ -16,8 +16,9 @@ class Square:
             TypeError: If size is not an integer.
             ValueError: If size is less than 0.
         """
-        self.__size = size
+        self.size = size
 
+    @property
     def size(self):
         """
         Getter method to retrieve the size of the square.
@@ -27,6 +28,7 @@ class Square:
         """
         return self.__size
 
+    @size.setter
     def size(self, value):
         """
         Setter method to set the size of the square.
