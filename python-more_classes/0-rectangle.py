@@ -1,6 +1,15 @@
 #!/usr/bin/python3
+
 class Rectangle:
     """
-    An empty class that defines a rectangle.
+    This class defines a rectangle.
+
+    Attributes:
+    ----------
+    None
+
+    Methods:
+    -------
+    None
     """
     pass
