@@ -5,3 +5,15 @@ CREATE USER IF NOT EXISTS 'user_0d_1'@'localhost';
 
 -- Create user 'user_0d_2' if it does not already exist
 CREATE USER IF NOT EXISTS 'user_0d_2'@'localhost';
+
+-- Show grants for 'user_0d_1'
+SHOW GRANTS FOR 'user_0d_1'@'localhost';
+
+-- Show grants for 'user_0d_2'
+SHOW GRANTS FOR 'user_0d_2'@'localhost';
+
+-- Revoke all privileges for user_0d_1 if they exist
+REVOKE ALL PRIVILEGES ON *.* FROM 'user_0d_1'@'localhost';
+
+-- Grant USAGE privilege only
+GRANT USAGE ON *.* TO 'user_0d_1'@'localhost';
