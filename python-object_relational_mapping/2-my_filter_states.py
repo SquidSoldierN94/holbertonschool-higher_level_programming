@@ -1,28 +1,29 @@
 #!/usr/bin/python3
-import sys
+"""
+Displays all values in the states table of hbtn_0e_0_usa where
+name matches the argument"""
+
 import MySQLdb
+from sys import argv
 
-def filter_states_by_name(username, password, dbname, state_name):
-    db = MySQLdb.connect(host="localhost", user=username, passwd=password, db=dbname, port=3306)
+if __name__ == '__main__':
+    """
+    Access to the database and get the states
+    from the database.
+    """
 
-    cursor = db.cursor()
+    db = MySQLdb.connect(host="localhost", user=argv[1], port=3306,
+                         passwd=argv[2], db=argv[3])
 
-    query = "SELECT id, name FROM states WHERE name = '{}' ORDER BY id ASC".format(state_name)
+    cur = db.cursor()
 
-    cursor.execute(query)
-
-    rows = cursor.fetchall()
+    cur.execute("SELECT * FROM states \
+                 WHERE name LIKE BINARY '{}' \
+                 ORDER BY states.id ASC".format(argv[4]))
+    rows = cur.fetchall()
 
     for row in rows:
         print(row)
 
-    cursor.close()
+    cur.close()
     db.close()
-
-if __name__ == "__main__":
-    if len(sys.argv) == 5:
-        username = sys.argv[1]
-        password = sys.argv[2]
-        dbname = sys.argv[3]
-        state_name = sys.argv[4]
-        filter_states_by_name(username, password, dbname, state_name)
