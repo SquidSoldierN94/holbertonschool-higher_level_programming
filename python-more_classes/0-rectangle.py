@@ -1,15 +1,12 @@
 #!/usr/bin/python3
+"""
+Simple rectangle : An empty class Rectangle that defines a rectangle.
+"""
+
 
 class Rectangle:
     """
-    This class defines a rectangle.
-
-    Attributes:
-    ----------
-    None
-
-    Methods:
-    -------
-    None
+    An empty Rectangle class
     """
+
     pass
