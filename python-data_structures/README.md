@@ -1,0 +1,1 @@
+When you pray at the altar, your wounds will be healed !
