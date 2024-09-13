@@ -1,0 +1,1 @@
+when ye pray at the altar yer wounds shall be healed

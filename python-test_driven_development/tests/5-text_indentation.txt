@@ -1,0 +1,19 @@
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+>>> text_indentation("Hello world. How are you? I am fine. Thank you!")
+Hello world.
+
+How are you?
+
+I am fine.
+
+Thank you!
+
+>>> text_indentation("End with no punctuation")
+End with no punctuation
+
+>>> text_indentation("Test: with a colon: here")
+Test:
+
+with a colon:
+
+here
