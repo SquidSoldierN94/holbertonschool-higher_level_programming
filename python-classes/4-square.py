@@ -1,33 +1,52 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+
 """
-This module defines a Square class used to represent a square with a specific size.
+Module that defines a square with validation and area calculation using properties.
 """
 
 class Square:
     """
-    A class used to represent a Square.
+    A class to represent a square.
 
     Attributes
     ----------
     size : int
-        The size of a side of the square.
-    """
+        The size of the square (must be >= 0).
 
+    Methods
+    -------
+    __init__(self, size=0):
+        Initializes the square with a size.
+    size(self):
+        Gets the current size of the square.
+    size(self, value):
+        Sets the size of the square with validation.
+    area(self):
+        Returns the area of the square.
+    """
+    
     def __init__(self, size=0):
         """
-        Initialize the square with a specific size.
+        Initializes the square with a size.
 
         Parameters
         ----------
         size : int, optional
-            The size of a side of the square (default is 0).
+            The size of the square (default is 0).
+
+        Raises
+        ------
+        TypeError
+            If size is not an integer.
+        ValueError
+            If size is less than 0.
         """
         self.size = size
 
     @property
     def size(self):
         """
-        Get the size of the square.
+        Gets the current size of the square.
 
         Returns
         -------
@@ -39,12 +58,12 @@ class Square:
     @size.setter
     def size(self, value):
         """
-        Set the size of the square.
+        Sets the size of the square with validation.
 
         Parameters
         ----------
         value : int
-            The size of a side of the square.
+            The size of the square.
 
         Raises
         ------
@@ -61,7 +80,7 @@ class Square:
 
     def area(self):
         """
-        Calculate the area of the square.
+        Returns the area of the square.
 
         Returns
         -------
