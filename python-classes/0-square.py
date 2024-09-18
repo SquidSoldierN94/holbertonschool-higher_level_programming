@@ -2,9 +2,20 @@
 
 class Square:
     """
-    A class used to represent a Square.
+    A class to represent a square.
 
-    This class is currently a placeholder and does not have any attributes or methods.
+    Attributes
+    ----------
+    None
+
+    Methods
+    -------
+    __init__(self):
+        Initializes a new instance of the Square class.
     """
 
-    pass
+    def __init__(self):
+        """
+        Initializes a new instance of the Square class.
+        """
+        pass
