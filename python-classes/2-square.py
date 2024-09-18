@@ -1,24 +1,32 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+
 """
-This module defines a Square class used to represent a square with a specific size.
+Module that defines a square with validation.
 """
 
 class Square:
     """
-    A class used to represent a Square.
+    A class to represent a square.
 
     Attributes
     ----------
     size : int
-        The size of a side of the square.
-    """
+        The size of the square (must be >= 0).
 
+    Methods
+    -------
+    __init__(self, size=0):
+        Initializes the square with a size.
+    """
+    
     def __init__(self, size=0):
         """
+        Initializes the square with a size.
+
         Parameters
         ----------
         size : int, optional
-            The size of a side of the square (default is 0).
+            The size of the square (default is 0).
 
         Raises
         ------
