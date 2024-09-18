@@ -13,7 +13,4 @@ class Square:
         Initializes a new instance of the Square class.
     """
     def __init__(self):
-        """
-        Initializes a new instance of the Square class.
-        """
         pass
