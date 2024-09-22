@@ -1,19 +1,47 @@
 >>> text_indentation = __import__('5-text_indentation').text_indentation
->>> text_indentation("Hello world. How are you? I am fine. Thank you!")
-Hello world.
+
+>>> text_indentation("Hello. How are you? I am fine:")
+Hello.
 
 How are you?
 
-I am fine.
+I am fine:
 
-Thank you!
+>>> text_indentation("No special characters here")
+No special characters here
 
->>> text_indentation("End with no punctuation")
-End with no punctuation
+>>> text_indentation("Check this out: it works!")
+Check this out:
 
->>> text_indentation("Test: with a colon: here")
-Test:
+it works!
 
-with a colon:
+>>> text_indentation("")
+<BLANKLINE>
+
+>>> text_indentation("Multiple spaces after period.   Another sentence.")
+Multiple spaces after period.
+
+Another sentence.
+
+>>> text_indentation("Trailing space. ")
+Trailing space.
+
+>>> text_indentation("Leading space :here")
+Leading space :
 
 here
+
+>>> text_indentation("This is a string with all three? Yes: it is.")
+This is a string with all three?
+
+Yes:
+
+it is.
+
+>>> text_indentation(123)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+>>> text_indentation("No punctuation here")
+No punctuation here
