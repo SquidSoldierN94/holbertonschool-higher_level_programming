@@ -1,11 +1,14 @@
 #!/usr/bin/python3
+"""
+Module that hold the BaseGeometr class and
+will hold its methods and potential subclasses
+"""
+
 
 class BaseGeometry:
     """
-    A class representing basic geometry.
-    
-    This is an empty class and serves as a base class for other geometry-related
-    classes. It can be extended in the future to include specific geometric methods
-    and properties.
+    Class that will hold several methods and potential
+    subclasses about geometry.
     """
+
     pass

@@ -1,19 +1,20 @@
 #!/usr/bin/python3
+"""
+Module that hold the BaseGeometr class and
+will hold its methods and potential subclasses
+"""
+
 
 class BaseGeometry:
     """
-    A class representing basic geometry.
-
-    This class provides an interface for geometric shapes.
-    It includes a method to calculate the area which must
-    be implemented by any subclass.
+    Class that will hold several methods and potential
+    subclasses about geometry.
     """
 
     def area(self):
         """
-        Calculate the area of the geometric shape.
-
-        Raises:
-            Exception: area() is not implemented.
+        Will probably be used to def area later
+        for now only raise exception
         """
+
         raise Exception("area() is not implemented")

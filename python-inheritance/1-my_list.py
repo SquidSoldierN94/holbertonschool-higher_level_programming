@@ -1,8 +1,18 @@
 #!/usr/bin/python3
+"""
+Module retrieve a list from inherited list and sort
+it in ascending order
+"""
+
 
 class MyList(list):
-    """A class that inherits from list and adds a method to print sorted list."""
+    """
+    Class that inherits from "list"
+    """
 
     def print_sorted(self):
-        """Print the list in ascending order."""
+        """
+        Function that prints the list but in ascending order
+        """
+
         print(sorted(self))
