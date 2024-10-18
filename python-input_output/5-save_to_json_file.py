@@ -1,17 +1,17 @@
 #!/usr/bin/python3
+"""
+Module to demonstrate direct writing of an object (python data)
+in the form of a JSON representation
+"""
 
-import json
 
 def save_to_json_file(my_obj, filename):
     """
-    Saves a Python object to a file in JSON format.
-
-    Args:
-        my_obj (any): The Python object to be saved to the file. This can be any serializable Python object.
-        filename (str): The name of the file to save the JSON data.
-
-    Returns:
-        None
+    Function that writes an object to a text file
+    with a Json representation
     """
-    with open(filename, 'w') as file:
-        json.dump(my_obj, file)
+    import json
+
+    with open(filename, "w") as file:
+        json_representation = json.dumps(my_obj)
+        file.write(json_representation)

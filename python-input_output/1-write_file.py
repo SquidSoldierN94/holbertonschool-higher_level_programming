@@ -1,16 +1,15 @@
 #!/usr/bin/python3
+"""
+Module to demonstrate writing with I/O
+"""
+
 
 def write_file(filename="", text=""):
     """
-    Writes a string to a text file (UTF-8) and returns the number of characters written.
-
-    Args:
-        filename (str): The name of the file to write to. Defaults to an empty string, which should be replaced with the actual file name.
-        text (str): The string to write to the file. Defaults to an empty string.
-
-    Returns:
-        int: The number of characters written to the file.
+    Function that write a string
+    to a text file in UTF8
+    and return numbers of charaters
     """
-    with open(filename, 'w', encoding='utf-8') as file:
-        num_chars = file.write(text)
-    return num_chars
+    with open(filename, "w", encoding='utf-8') as file:
+        file.write(text)
+        return len(text)
