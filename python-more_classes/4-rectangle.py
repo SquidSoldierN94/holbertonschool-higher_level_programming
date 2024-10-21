@@ -131,4 +131,3 @@ class Rectangle:
         Return a string representation of the rectangle for eval
         """
         return "Rectangle({}, {})".format(self.width, self.height)
-    
