@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 """
-Module: rectangle
-Defines a Rectangle class
+This module provides the first step into creating
+and understanding classes.
+
 """
 
+
 class Rectangle:
-    """Defines a rectangle."""
-    def __init__(self):
-        """Initializes a new Rectangle instance."""
-        pass
+    """
+    Creating a class "Rectangle" to define a rectangle
+    """
+    pass
