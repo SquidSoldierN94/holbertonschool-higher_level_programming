@@ -1,9 +1,14 @@
 #!/usr/bin/python3
-from calculator_1 import add, sub, mul, div
 if __name__ == "__main__":
+    import calculator_1 as cal
     a = 10
     b = 5
-    print(f"{a} + {b} = {add(a, b)}")
-    print(f"{a} - {b} = {sub(a, b)}")
-    print(f"{a} * {b} = {mul(a, b)}")
-    print(f"{a} / {b} = {div(a, b)}")
+    addresult = cal.add(a, b)
+    subresult = cal.sub(a, b)
+    mulresult = cal.mul(a, b)
+    divresult = cal.div(a, b)
+
+    print("{} + {} = {}".format(a, b, addresult))
+    print("{} - {} = {}".format(a, b, subresult))
+    print("{} * {} = {}".format(a, b, mulresult))
+    print("{} / {} = {}".format(a, b, divresult))
