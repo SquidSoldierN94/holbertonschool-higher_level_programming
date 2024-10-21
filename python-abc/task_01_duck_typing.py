@@ -1,30 +1,118 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
-Module that hold the BaseGeometry class and
-will hold its methods and potential subclasses
+Module to demonstrate ducktyping and abstract base classes in Python.
+
+This module defines an abstract Shape class and two concrete subclasses,
+Circle and Rectangle. It also includes a function to demonstrate ducktyping.
 """
 
+from abc import ABC, abstractmethod
+import math
 
-class BaseGeometry:
+
+class Shape(ABC):
     """
-    Class that will hold several methods and potential
-    subclasses about geometry.
+    Abstract base class representing a geometric shape.
+
+    This class defines the interface for all shapes, requiring
+    implementations of area and perimeter calculations.
     """
+
+    @abstractmethod
+    def area(self):
+        """
+        Calculate and return the area of the shape.
+
+        This method must be implemented by all subclasses.
+        """
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        """
+        Calculate and return the perimeter of the shape.
+
+        This method must be implemented by all subclasses.
+        """
+        pass
+
+
+class Circle(Shape):
+    """
+    Concrete class representing a circle.
+
+    This class implements the Shape interface for a circle.
+    """
+
+    def __init__(self, radius):
+        """
+        Initialize a Circle instance.
+
+        Args:
+            radius (float): The radius of the circle.
+        """
+        self.radius = radius
 
     def area(self):
         """
-        Will probably be used to def area later
-        for now only raise exception
+        Calculate and return the area of the circle.
+
+        Returns:
+            float: The area of the circle.
+        """
+        return abs(math.pi * (self.radius * self.radius))
+
+    def perimeter(self):
+        """
+        Calculate and return the perimeter (circumference) of the circle.
+
+        Returns:
+            float: The perimeter of the circle.
+        """
+        return abs(math.pi * (self.radius * 2))
+
+
+class Rectangle(Shape):
+    """
+    Concrete class representing a rectangle.
+
+    This class implements the Shape interface for a rectangle.
+    """
+
+    def __init__(self, width, height):
+        """
+        Initialize a Rectangle instance.
         """
 
-        raise Exception("area() is not implemented")
+        self.width = width
+        self.height = height
 
-    def integer_validator(self, name, value):
+    def area(self):
         """
-        Validates value and raise errors if not correct
+        Calculate and return the area of the rectangle.
         """
 
-        if type(value) is not int or type(value) is bool:
-            raise TypeError("{} must be an integer".format(name))
-        if value <= 0:
-            raise ValueError("{} must be greater than 0".format(name))
+        return self.width * self.height
+
+    def perimeter(self):
+        """
+        Calculate and return the perimeter of the rectangle.
+
+        """
+
+        return (self.width * 2) + (self.height * 2)
+
+
+def shape_info(any_argument):
+    """
+    Print the area and perimeter of any shape object.
+
+    This function demonstrates ducktyping by working with any object
+    that has area() and perimeter() methods, regardless of its actual class.
+    """
+
+    area = any_argument.area()
+    perimeter = any_argument.perimeter()
+
+    print("Area: {}".format(area))
+    print("Perimeter: {}".format(perimeter))
