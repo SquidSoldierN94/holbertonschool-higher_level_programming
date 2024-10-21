@@ -1,67 +1,132 @@
 #!/usr/bin/python3
+"""
+Module to manage API security and authentication techniques
+"""
+
+
 from flask import Flask, jsonify, request
+from flask_httpauth import HTTPBasicAuth
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import (
+    JWTManager,
+    create_access_token,
+    get_jwt_identity,
+    jwt_required,
+    verify_jwt_in_request,
+    get_jwt,
+)
+from functools import wraps
+
+JWT_SECRET_KEY = "Ch4Gg13"  # Constant for clearer code
 
 app = Flask(__name__)
+auth = HTTPBasicAuth()
+app.config["JWT_SECRET_KEY"] = JWT_SECRET_KEY  # secure key
+jwt = JWTManager(app)
 
+
+# Users list with hashed passwords
 users = {
-    "jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"},
-    "john": {"username": "john", "name": "John", "age": 30, "city": "New York"}
+    "charlie": {
+        "username": "Charlie",
+        "password": generate_password_hash("L0v3_V4gG13"),
+        "role": "admin",
+    },
+    "susan": {
+        "username": "Susan",
+        "password": generate_password_hash("0Ld_H4g"),
+        "role": "user",
+    },
 }
 
-@app.route('/')
-def home():
-    """
-    Handle the root URL and return a welcome message.
-    """
-    return "Welcome to the Flask API!"
 
-@app.route('/status')
-def status():
-    """
-    Handle the /status URL and return 'OK' to indicate the server is running.
-    """
-    return "OK"
+# Function to verify if username and if password match with username
+@auth.verify_password
+def verify_password(username, password):
+    """Verify username and password match."""
+    if username in users and \
+            check_password_hash(users[username]["password"], password):
+        return username
 
-@app.route('/data')
-def get_usernames():
-    """
-    Handle the /data URL and return a JSON list of all usernames stored in the API.
-    """
-    return jsonify(list(users.keys()))
 
-@app.route('/users/<username>')
-def get_user(username):
-    """
-    Handle the /users/<username> URL and return the user details for the given username.
-    If the user is not found, return an error message with a 404 status code.
-    """
-    user = users.get(username)
-    if user:
-        return jsonify(user)
-    else:
-        return jsonify({"error": "User not found"}), 404
+# Path protected by the authentication
+@app.route("/basic-protected")
+@auth.login_required
+def welcome():
+    """Protected route that returns a welcome message."""
+    return jsonify({"Basic Auth: Access Granted"}), 200
 
-@app.route('/add_user', methods=['POST'])
-def add_user():
-    """
-    Handle the /add_user URL and accept POST requests to add a new user.
-    Parse the incoming JSON data and add the new user to the users dictionary.
-    Return a confirmation message with the added user's data or an error message if the username is missing or already exists.
-    """
-    user_data = request.get_json()
-    username = user_data.get("username")
+# Path protected by JWT with payload
+@app.route("/login", methods=["POST"])
+def login():
+    """Authenticate user and return a JWT token."""
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
 
-    if not username:
-        return jsonify({"error": "Username is required"}), 400
+    # Check if all required fields are given. If not, return 400 Bad request
+    if not username or not password:
+        return jsonify({"msg": "Missing username or password"}), 400
 
-    if username in users:
-        return jsonify({"error": "Username already exists"}), 400
+    # Check authentication, if not, return 401 Unauthorized
+    if username not in users or \
+            not check_password_hash(users[username]["password"], password):
+        return jsonify({"msg": "Invalid credentials"}), 401
 
-    users[username] = user_data
-    return jsonify({
-        "message": "User added",
-        "user": user_data
-    }), 201
+    # Retrieve the user's role and generate JWT
+    user_role = users[username]["role"]
 
-if __name__ == "__main__":
-    app.run(debug=True)
+    # If admin, get admin access
+    additional_claims = {"is_admin": user_role == "admin"}
+    access_token = create_access_token(identity=username, additional_claims=additional_claims)
+    
+    return jsonify(access_token=access_token), 200
+
+
+
+# Path proctected by simple JWT, I think.
+@app.route("/jwt-protected", methods=["GET"])
+@jwt_required
+def protected():
+    """Protected route that returns the current user's identity."""
+    current_user = get_jwt_identity()
+    return jsonify(logged_in_as=current_user), 200
+
+
+# Path for admin only
+@app.route('/admin-only')
+@jwt_required()
+def admin_only():
+    current_user = get_jwt_identity()
+    if current_user['role'] != 'admin':
+        return jsonify({"error": "Admin access required"}), 403
+    return "Admin Access: Granted"
+
+
+# Handling errors
+@jwt.unauthorized_loader
+def handle_unauthorized_error(err):
+    return jsonify({"error": "Missing or invalid token"}), 401
+
+
+@jwt.invalid_token_loader
+def handle_invalid_token_error(err):
+    return jsonify({"error": "Invalid token"}), 401
+
+
+@jwt.expired_token_loader
+def handle_expired_token_error(jwt_header, jwt_payload):
+    return jsonify({"error": "Token has expired"}), 401
+
+
+@jwt.revoked_token_loader
+def handle_revoked_token_error(jwt_header, jwt_payload):
+    return jsonify({"error": "Token has been revoked"}), 401
+
+
+@jwt.needs_fresh_token_loader
+def handle_needs_fresh_token_error(jwt_header, jwt_payload):
+    return jsonify({"error": "Fresh token required"}), 401
+
+
+if __name__ == '__main__':
+    app.run()
