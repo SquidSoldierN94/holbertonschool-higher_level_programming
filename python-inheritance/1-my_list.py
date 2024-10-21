@@ -1,18 +1,14 @@
 #!/usr/bin/python3
 """
-Module retrieve a list from inherited list and sort
-it in ascending order
+This module defines a function called lookup
 """
 
 
-class MyList(list):
+def lookup(obj):
     """
-    Class that inherits from "list"
+    Function to return a list of available attributes
+    and methods of an object
     """
 
-    def print_sorted(self):
-        """
-        Function that prints the list but in ascending order
-        """
-
-        print(sorted(self))
+    attribute_list = dir(obj)
+    return attribute_list
