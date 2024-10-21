@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-for i in range(10):
-    for j in range(i + 1, 10):
-        if i != 8 or j != 9:
-            print(f"{i}{j}, ", end="")
-print("89")
+for first_digit in range(0, 9):
+    for second_digit in range(first_digit + 1, 10):
+        if first_digit == 8 and second_digit == 9:
+            print("{:d}{:d}".format(first_digit, second_digit))
+        else:
+            print("{:d}{:d}, ".format(first_digit, second_digit), end="")
