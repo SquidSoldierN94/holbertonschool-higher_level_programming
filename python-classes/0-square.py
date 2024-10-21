@@ -1,22 +1,13 @@
 #!/usr/bin/python3
 """
-Module that defines a square.
+This module provides the first step into creating
+and understanding classes.
+
 """
+
+
 class Square:
     """
-    A class to represent a square.
-
-    Attributes
-    ----------
-    None
-
-    Methods
-    -------
-    __init__(self):
-        Initializes a new instance of the Square class.
+    Creating a class "Square" to define a square
     """
-    def __init__(self):
-        """
-        Initializes a new instance of the Square class.
-        """
-        pass
+    pass
