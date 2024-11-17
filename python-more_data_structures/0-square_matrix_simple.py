@@ -1,12 +1,20 @@
 #!/usr/bin/python3
+
 def square_matrix_simple(matrix=[]):
+    """
+    Compute the square value of all integers in a matrix.
 
-    new_matrix = []                         # Create a new empty matrix
+    Parameters:
+    matrix (list of lists of int): A 2-dimensional array of integers.
 
-    for row in matrix:                      # Iterate through each lines
-        # Create a new line with square of each
-        new_row = [num ** 2 for num in row]
-
-        new_matrix.append(new_row)          # Append new row to the new matrix
-
+    Returns:
+    list of lists of int: A new matrix of the same size where each value is the square of the value of the input matrix.
+                          The initial matrix should not be modified.
+    """
+    new_matrix = []
+    
+    for row in matrix:
+        new_row = [x**2 for x in row]
+        new_matrix.append(new_row)
+    
     return new_matrix
