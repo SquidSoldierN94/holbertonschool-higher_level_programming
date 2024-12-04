@@ -1,0 +1,1 @@
+and the lord said "you shall die so that others may die later"
