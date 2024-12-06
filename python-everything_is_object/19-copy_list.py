@@ -1,23 +1,27 @@
 #!/usr/bin/python3
 
 """
-This module that creates a shallow copy of a list.
-It demonstrates the use of list comprehension for copying a list.
+This module defines a function `copy_list` that creates a copy of a given list.
+
+The opy of the input list, meaning that the original
+list remains unchanged, and any modifications to the new list will not affect
+the original one.
+
+The function can handle lists containing any type of objects.
+
+No external modules are required for this implementation.
+
+Function:
+    - copy_list(a_list: List[Any]) -> List[Any]:
+        Returns a new list containing the same elements as the input list.
+
+Parameters:
+    a_list (List[Any]): The input list to be copied.
+
+Returns:
+    List[Any]: A new list containing the same elements as the input list.
 """
 
 
 def copy_list(a_list):
-
-    """
-    Returns a copy of the given list.
-
-    This function is a copy of the original list
-    provided as input. It uses list comprehension to achieve this.
-
-    Parameters:
-    a_list (list): The list to be copied.
-
-    Returns:
-    list: A new list that contains the same elements as the original list.
-    """
-    return [item for item in a_list]
+    return a_list[:]
