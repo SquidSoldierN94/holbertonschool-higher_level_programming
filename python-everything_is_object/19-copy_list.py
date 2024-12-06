@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """
 This module that creates a shallow copy of a list.
 It demonstrates the use of list comprehension for copying a list.
